@@ -334,6 +334,7 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "WO Lingua Lab",
+      "status": "own",
       "cat": "app",
       "url": "https://sashanazarenko2051-source.github.io/lingualab/",
       "repo": "https://github.com/sashanazarenko2051-source/lingualab",

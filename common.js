@@ -189,7 +189,7 @@
         <div class="proj-tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
         ${p.host === "Render" ? `<div class="proj-wake">${esc(t("proj_wake"))}</div>` : ""}
         <div class="cta-row">
-          <a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : "proj_open"))} ↗</a>
+          <a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : p.cat === "app" ? "proj_open_app" : "proj_open"))} ↗</a>
           ${p.repo ? `<a class="btn small ghost" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(t("proj_code"))}</a>` : ""}
         </div>
       </div>

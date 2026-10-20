@@ -186,6 +186,7 @@ a.svc:hover { border-color: var(--cyan); transform: translateY(-3px); }
 .proj-status.st-client { color: var(--ok); background: color-mix(in srgb, var(--ok) 10%, transparent); }
 .proj-status.st-client::before { box-shadow: 0 0 8px var(--ok); animation: pulse 2s infinite; }
 .proj-status.st-demo { color: var(--amber); }
+.proj-status.st-own { color: var(--cyan); background: color-mix(in srgb, var(--cyan) 10%, transparent); }
 @keyframes pulse { 50% { opacity: .35; } }
 @media (prefers-reduced-motion: reduce) { .proj-status.st-client::before { animation: none; } }
 .proj-sample { position: absolute; bottom: 12px; right: 12px; background: var(--void); color: var(--amber); border: 1px solid var(--amber); font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; padding: 4px 9px; }

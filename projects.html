@@ -74,7 +74,7 @@
     const byCat = all.filter(p => !cat || p.cat === cat);
     document.getElementById("statusRow").innerHTML = `<span class="label">${esc(t("f_status"))}</span>` +
       chip("status", "", esc(t("cat_all")), byCat.length, status === "") +
-      [["client", t("stf_client")], ["demo", t("st_demo")]]
+      [["client", t("stf_client")], ["own", t("stf_own")], ["demo", t("st_demo")]]
         .map(([v, label]) => [v, label, byCat.filter(p => p.status === v).length])
         .filter(([v, , n]) => n > 0 || status === v)
         .map(([v, label, n]) => chip("status", v, esc(label), n, status === v)).join("");
