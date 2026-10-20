@@ -229,6 +229,7 @@ window.MANTROGOR_DATA = {
   "projects": [
     {
       "title": "Cukrárna CakeMe",
+      "status": "client",
       "cat": "web",
       "url": "https://cukrarna-cakeme.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
@@ -249,6 +250,7 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "Nice Shopping",
+      "status": "client",
       "cat": "web",
       "url": "https://nice-shopping.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
@@ -269,6 +271,7 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "Nice Shopping Bot",
+      "status": "client",
       "cat": "bot",
       "url": "https://nice-shopping.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
@@ -289,6 +292,7 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "CakeMe Bot",
+      "status": "client",
       "cat": "bot",
       "url": "https://cukrarna-cakeme.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
@@ -309,6 +313,7 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "Transpika",
+      "status": "demo",
       "cat": "web",
       "url": "https://sashanazarenko2051-source.github.io/transpika-site/",
       "repo": "https://github.com/sashanazarenko2051-source/transpika-site",

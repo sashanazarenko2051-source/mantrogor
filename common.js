@@ -182,6 +182,7 @@
         ${isBot ? `<span class="proj-sample">${esc(t("proj_sample"))}</span>` : ""}
       </a>
       <div class="proj-body">
+        ${p.status ? `<span class="proj-status st-${esc(p.status)}">${esc(t("st_" + p.status))}</span>` : ""}
         ${svc ? `<span class="label">${esc(svc.code)} · ${esc(tr(svc.title))}</span>` : ""}
         <h3>${esc(p.title)}</h3>
         <p>${esc(tr(p.desc))}</p>
