@@ -229,6 +229,7 @@ window.MANTROGOR_DATA = {
   "projects": [
     {
       "title": "Cukrárna CakeMe",
+      "cat": "web",
       "url": "https://cukrarna-cakeme.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
       "host": "Render",
@@ -248,6 +249,7 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "Nice Shopping",
+      "cat": "web",
       "url": "https://nice-shopping.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
       "host": "Render",
@@ -266,7 +268,48 @@ window.MANTROGOR_DATA = {
       }
     },
     {
+      "title": "Nice Shopping Bot",
+      "cat": "bot",
+      "url": "https://nice-shopping.onrender.com/",
+      "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
+      "host": "Telegram",
+      "image": "projects/bot-niceshop.jpg",
+      "tags": ["Telegram Bot API", "Python", "FastAPI"],
+      "desc": {
+        "ru": "Telegram-бот магазина Nice Shopping: сразу присылает владельцу каждый заказ — клиент, телефон, доставка, оплата, товары и сумма.",
+        "uk": "Telegram-бот магазину Nice Shopping: одразу надсилає власнику кожне замовлення — клієнт, телефон, доставка, оплата, товари й сума.",
+        "en": "Telegram bot for the Nice Shopping store: instantly sends the owner every order — customer, phone, delivery, payment, items and total.",
+        "cs": "Telegram bot e-shopu Nice Shopping: majiteli hned pošle každou objednávku — zákazník, telefon, doprava, platba, zboží a částka.",
+        "pl": "Bot Telegram sklepu Nice Shopping: od razu wysyła właścicielowi każde zamówienie — klient, telefon, dostawa, płatność, produkty i kwota.",
+        "de": "Telegram-Bot für den Shop Nice Shopping: schickt dem Inhaber sofort jede Bestellung — Kunde, Telefon, Versand, Zahlung, Artikel und Summe.",
+        "fr": "Bot Telegram de la boutique Nice Shopping : envoie aussitôt chaque commande au propriétaire — client, téléphone, livraison, paiement, articles et total.",
+        "es": "Bot de Telegram de la tienda Nice Shopping: envía al dueño cada pedido al instante — cliente, teléfono, envío, pago, productos e importe.",
+        "it": "Bot Telegram del negozio Nice Shopping: invia subito al titolare ogni ordine — cliente, telefono, spedizione, pagamento, articoli e totale."
+      }
+    },
+    {
+      "title": "CakeMe Bot",
+      "cat": "bot",
+      "url": "https://cukrarna-cakeme.onrender.com/",
+      "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
+      "host": "Telegram",
+      "image": "projects/bot-cakeme.jpg",
+      "tags": ["Telegram Bot API", "Python", "FastAPI"],
+      "desc": {
+        "ru": "Telegram-бот кондитерской CakeMe: присылает новые заказы тортов с датой, временем, адресом и способом оплаты. Сообщения могут получать сразу несколько сотрудников.",
+        "uk": "Telegram-бот кондитерської CakeMe: надсилає нові замовлення тортів із датою, часом, адресою та способом оплати. Повідомлення можуть отримувати одразу кілька працівників.",
+        "en": "Telegram bot for the CakeMe patisserie: sends new cake orders with date, time, address and payment method. Several staff members can receive them at once.",
+        "cs": "Telegram bot cukrárny CakeMe: posílá nové objednávky dortů s datem, časem, adresou a způsobem platby. Zprávy může dostávat více zaměstnanců najednou.",
+        "pl": "Bot Telegram cukierni CakeMe: wysyła nowe zamówienia tortów z datą, godziną, adresem i sposobem płatności. Wiadomości może dostawać kilku pracowników naraz.",
+        "de": "Telegram-Bot der Konditorei CakeMe: sendet neue Tortenbestellungen mit Datum, Uhrzeit, Adresse und Zahlungsart. Mehrere Mitarbeiter können sie gleichzeitig erhalten.",
+        "fr": "Bot Telegram de la pâtisserie CakeMe : envoie les nouvelles commandes de gâteaux avec date, heure, adresse et mode de paiement. Plusieurs employés peuvent les recevoir à la fois.",
+        "es": "Bot de Telegram de la pastelería CakeMe: envía los nuevos pedidos de tartas con fecha, hora, dirección y forma de pago. Varios empleados pueden recibirlos a la vez.",
+        "it": "Bot Telegram della pasticceria CakeMe: invia i nuovi ordini di torte con data, ora, indirizzo e metodo di pagamento. Più dipendenti possono riceverli insieme."
+      }
+    },
+    {
       "title": "Transpika",
+      "cat": "web",
       "url": "https://sashanazarenko2051-source.github.io/transpika-site/",
       "repo": "https://github.com/sashanazarenko2051-source/transpika-site",
       "host": "GitHub Pages",
@@ -286,11 +329,12 @@ window.MANTROGOR_DATA = {
     },
     {
       "title": "WO Lingua Lab",
+      "cat": "app",
       "url": "https://sashanazarenko2051-source.github.io/lingualab/",
       "repo": "https://github.com/sashanazarenko2051-source/lingualab",
-      "host": "GitHub Pages",
+      "host": "Windows · Web",
       "image": "projects/lingualab.jpg",
-      "tags": ["JavaScript", "PWA", "Python", "TTS"],
+      "tags": ["JavaScript", "Python", "pywebview", "Edge TTS", "PWA"],
       "desc": {
         "ru": "Приложение для изучения языков: 8000 слов на язык, уровни A0–B2, озвучка; работает в браузере, на телефоне и как программа для Windows.",
         "uk": "Застосунок для вивчення мов: 8000 слів на мову, рівні A0–B2, озвучення; працює в браузері, на телефоні та як програма для Windows.",

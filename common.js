@@ -171,23 +171,29 @@
   }
 
   // Карточка проекта для главной и страницы «Проекты».
-  const projectCard = p => `
-    <article class="proj">
+  const projectCard = p => {
+    const svc = data.services.find(s => s.id === p.cat);
+    const isBot = p.cat === "bot";
+    return `
+    <article class="proj" data-cat="${esc(p.cat || "")}">
       <a class="proj-shot" href="${esc(p.url)}" target="_blank" rel="noopener" aria-label="${esc(p.title)}">
         <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="800" height="500">
         <span class="proj-host">${esc(p.host)}</span>
+        ${isBot ? `<span class="proj-sample">${esc(t("proj_sample"))}</span>` : ""}
       </a>
       <div class="proj-body">
+        ${svc ? `<span class="label">${esc(svc.code)} · ${esc(tr(svc.title))}</span>` : ""}
         <h3>${esc(p.title)}</h3>
         <p>${esc(tr(p.desc))}</p>
         <div class="proj-tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
         ${p.host === "Render" ? `<div class="proj-wake">${esc(t("proj_wake"))}</div>` : ""}
         <div class="cta-row">
-          <a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t("proj_open"))} ↗</a>
+          <a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : "proj_open"))} ↗</a>
           ${p.repo ? `<a class="btn small ghost" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(t("proj_code"))}</a>` : ""}
         </div>
       </div>
     </article>`;
+  };
 
   window.M = { data, fmt, esc, copy, minPrice, STORE_KEY, t, tr, days, lang, LANGS, isLoc, projectCard };
   header(); footer(); apply(); grid();

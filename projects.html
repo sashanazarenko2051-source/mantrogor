@@ -33,6 +33,10 @@
       <h1 data-i18n="nav_projects"></h1>
       <p data-i18n="proj_lead"></p>
     </div>
+    <div class="filters">
+      <div class="filter-row" id="catRow" role="group"></div>
+      <div class="filter-row" id="techRow" role="group"></div>
+    </div>
     <div class="projects" id="projList" style="padding-bottom:64px"></div>
   </div>
 
@@ -49,7 +53,42 @@
 <script src="i18n.js"></script>
 <script src="common.js"></script>
 <script>
-  document.getElementById("projList").innerHTML = (M.data.projects || []).map(M.projectCard).join("");
+  const { data, esc, t, tr, projectCard } = M;
+  const all = data.projects || [];
+  const cats = data.services.filter(s => all.some(p => p.cat === s.id));
+  const techs = [...new Set(all.flatMap(p => p.tags || []))]
+    .sort((a, b) => all.filter(p => p.tags.includes(b)).length - all.filter(p => p.tags.includes(a)).length || a.localeCompare(b));
+  // Категория из ссылки: projects.html#bot
+  let cat = cats.some(s => s.id === location.hash.slice(1)) ? location.hash.slice(1) : "";
+  let tech = "";
+
+  const chip = (kind, value, label, n, on) =>
+    `<button type="button" class="chip" data-${kind}="${esc(value)}" aria-pressed="${on}">${label}<span class="n">${n}</span></button>`;
+
+  function render() {
+    const inCat = all.filter(p => !cat || p.cat === cat);
+    document.getElementById("catRow").innerHTML = `<span class="label">${esc(t("f_cat"))}</span>` +
+      chip("cat", "", esc(t("cat_all")), all.length, cat === "") +
+      cats.map(s => chip("cat", s.id, esc(tr(s.title)), all.filter(p => p.cat === s.id).length, cat === s.id)).join("");
+    document.getElementById("techRow").innerHTML = `<span class="label">${esc(t("f_tech"))}</span>` +
+      techs.map(x => [x, inCat.filter(p => p.tags.includes(x)).length])
+        .filter(([x, n]) => n > 0 || tech === x)
+        .map(([x, n]) => chip("tech", x, esc(x), n, tech === x)).join("");
+    const list = inCat.filter(p => !tech || p.tags.includes(tech));
+    document.getElementById("projList").innerHTML = list.length ? list.map(projectCard).join("") :
+      `<div class="proj-empty">${esc(t("proj_none"))} <button type="button" class="btn small ghost" data-reset="1">${esc(t("proj_reset"))}</button></div>`;
+  }
+
+  document.querySelector(".filters").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.cat !== undefined) { cat = b.dataset.cat; history.replaceState(null, "", cat ? "#" + cat : location.pathname + location.search); }
+    if (b.dataset.tech !== undefined) tech = tech === b.dataset.tech ? "" : b.dataset.tech;
+    render();
+  });
+  document.getElementById("projList").addEventListener("click", e => {
+    if (e.target.closest("[data-reset]")) { cat = ""; tech = ""; render(); }
+  });
+  render();
 </script>
 </body>
 </html>
