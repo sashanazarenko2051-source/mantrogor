@@ -190,7 +190,13 @@ a.svc:hover { border-color: var(--cyan); transform: translateY(-3px); }
 .calc { display: grid; grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 20px; align-items: start; }
 @media (max-width: 900px) { .calc { grid-template-columns: minmax(0,1fr); } }
 .calc-form { background: var(--panel); border: 1px solid var(--line); padding: 28px; display: grid; gap: 24px; }
-fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; }
+fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 10px; min-width: 0; min-inline-size: 0; }
+.calc-form, .calc-form > * { min-width: 0; }
+.opt { max-width: 100%; }
+.opt span { max-width: 100%; }
+.calc-hint { margin: -4px 0 4px; font-size: 13px; color: var(--muted); }
+.calc-warn { color: var(--magenta); font-size: 13px; }
+.tier .incl { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); border-top: 1px dashed var(--line); padding-top: 12px; }
 legend { padding: 0; margin-bottom: 10px; }
 .group-name { font-size: 13px; color: var(--muted); }
 .opts { display: flex; flex-wrap: wrap; gap: 8px; }

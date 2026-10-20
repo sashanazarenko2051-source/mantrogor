@@ -57,6 +57,7 @@
         <div class="price"><small>${esc(t("from"))} </small>${fmt(x.price)}</div>
         <div class="term">${esc(t("term"))}: ${esc(days(Number(x.days) || 1))}</div>
         <ul>${tr(x.items).map(i => `<li>${esc(i)}</li>`).join("")}</ul>
+        <div class="incl">✓ ${esc(t("hosting_incl"))}</div>
         <a class="btn small${x.hot ? "" : " ghost"}" href="contacts.html">${esc(t("discuss"))}</a>
       </article>`).join("");
   }

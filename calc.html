@@ -23,6 +23,7 @@
       <form class="calc-form" id="calcForm">
         <fieldset>
           <legend class="label" data-i18n="calc_what"></legend>
+          <p class="calc-hint" data-i18n="calc_hint"></p>
           <div id="calcType" style="display:grid;gap:14px"></div>
         </fieldset>
         <fieldset>
@@ -62,28 +63,47 @@
   document.getElementById("calcType").innerHTML = data.services.map((s, si) => `
     <div style="display:grid;gap:8px">
       <span class="group-name">${esc(tr(s.title))}</span>
-      <div class="opts">${s.tiers.map((x, ti) => opt("ctype", "radio", si + "-" + ti, esc(tr(x.name)) + " · " + fmt(x.price), si === 0 && ti === 0)).join("")}</div>
+      <div class="opts">${s.tiers.map((x, ti) => opt("ctype-" + si, "checkbox", si + "-" + ti, esc(tr(x.name)) + " · " + fmt(x.price), si === 0 && ti === 0)).join("")}</div>
     </div>`).join("");
+  // В каждом направлении — не больше одного тарифа; повторный клик снимает выбор.
+  document.getElementById("calcType").addEventListener("change", e => {
+    const box = e.target;
+    if (box.checked) document.querySelectorAll(`[name="${box.name}"]`).forEach(o => { if (o !== box) o.checked = false; });
+  });
   document.getElementById("calcExtras").innerHTML = data.extras.map((x, i) => opt("cextra", "checkbox", i, esc(tr(x.name)) + " · +" + fmt(x.price), false)).join("");
   document.getElementById("calcSpeed").innerHTML = SPEEDS.map((s, i) => opt("cspeed", "radio", s.id, esc(t(s.key)), i === 0)).join("");
 
   let summary = "", serviceTitle = "";
   function calc() {
     const f = document.getElementById("calcForm");
-    const [si, ti] = f.querySelector('[name="ctype"]:checked').value.split("-").map(Number);
-    const svc = data.services[si], x = svc.tiers[ti];
+    const picked = [...f.querySelectorAll('[name^="ctype-"]:checked')].map(i => {
+      const [si, ti] = i.value.split("-").map(Number);
+      return { svc: data.services[si], x: data.services[si].tiers[ti] };
+    });
+    const toOrder = document.getElementById("toOrder");
+    if (!picked.length) {
+      document.getElementById("calcTotal").textContent = "—";
+      document.getElementById("calcDays").textContent = "";
+      document.getElementById("calcLines").innerHTML = `<div class="calc-warn">${esc(t("calc_pick"))}</div>`;
+      toOrder.hidden = true;
+      return;
+    }
+    toOrder.hidden = false;
     const ex = [...f.querySelectorAll('[name="cextra"]:checked')].map(i => data.extras[+i.value]);
     const s = SPEEDS.find(v => v.id === f.querySelector('[name="cspeed"]:checked').value);
-    const base = Number(x.price) + ex.reduce((a, e) => a + Number(e.price), 0);
+    const sum = arr => arr.reduce((a, b) => a + (Number(b) || 0), 0);
+    const base = sum(picked.map(p => p.x.price)) + sum(ex.map(e => e.price));
     const total = Math.round(base * s.k / 10) * 10;
-    const n = Math.max(2, Math.round((Number(x.days) + ex.reduce((a, e) => a + Number(e.days), 0)) * s.d));
+    // Направления делаются параллельно: срок = самый долгий тариф + опции.
+    const n = Math.max(2, Math.round((Math.max(...picked.map(p => Number(p.x.days) || 0)) + sum(ex.map(e => e.days))) * s.d));
     document.getElementById("calcTotal").textContent = "≈ " + fmt(total);
     document.getElementById("calcDays").textContent = t("term") + ": " + days(n);
-    const lines = [[tr(x.name), fmt(x.price)], ...ex.map(e => [tr(e.name), "+" + fmt(e.price)])];
+    const lines = [...picked.map(p => [tr(p.x.name), fmt(p.x.price)]), ...ex.map(e => [tr(e.name), "+" + fmt(e.price)])];
     if (s.k > 1) lines.push([t("calc_speed") + " ×" + s.k, "+" + fmt(total - base)]);
-    document.getElementById("calcLines").innerHTML = lines.map(l => `<div><span>${esc(l[0])}</span><span>${l[1]}</span></div>`).join("");
-    serviceTitle = tr(svc.title);
-    summary = `${tr(svc.title)}: ${tr(x.name)}${ex.length ? " + " + ex.map(e => tr(e.name)).join(", ") : ""}; ${t(s.key)}. ${t("estimate")}: ${fmt(total)}, ${days(n)}.`;
+    lines.push([t("hosting_line"), t("incl")]);
+    document.getElementById("calcLines").innerHTML = lines.map(l => `<div><span>${esc(l[0])}</span><span>${esc(l[1])}</span></div>`).join("");
+    serviceTitle = picked.length > 1 ? t("opt_combo") : tr(picked[0].svc.title);
+    summary = `${picked.map(p => tr(p.svc.title) + ": " + tr(p.x.name)).join("; ")}${ex.length ? " + " + ex.map(e => tr(e.name)).join(", ") : ""}; ${t(s.key)}. ${t("estimate")}: ${fmt(total)}, ${days(n)}. ${t("hosting_incl")}.`;
   }
   document.getElementById("calcForm").addEventListener("change", calc);
   calc();
