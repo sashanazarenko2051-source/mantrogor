@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Услуги · MANTROGOR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="services.html">
+<header id="site-header"></header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <div class="prompt">mantrogor@studio:~$ <b>ls</b> ./services</div>
+      <h1>Услуги</h1>
+      <p>Можно заказать одно направление или связать всё вместе: сайт принимает заявки, бот присылает их вам, программа ведёт учёт.</p>
+    </div>
+    <div class="svc-rows" id="svcRows"></div>
+  </div>
+
+  <section class="cta-band" style="margin-top:64px">
+    <div class="wrap">
+      <h2>Не знаете, что выбрать? Подскажем.</h2>
+      <a class="btn" href="contacts.html">Получить консультацию</a>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+  const { data, fmt, esc, minPrice } = M;
+  document.getElementById("svcRows").innerHTML = data.services.map(s => `
+    <article class="svc-row" id="${esc(s.id)}">
+      <div class="info">
+        <span class="label">${esc(s.code)}</span>
+        <h2>${esc(s.title)}</h2>
+        <p>${esc(s.desc)}</p>
+        <ul>${s.bullets.map(b => `<li>${esc(b)}</li>`).join("")}</ul>
+        <div class="cta-row"><a class="btn small" href="prices.html#${esc(s.id)}">Тарифы от ${fmt(minPrice(s))}</a></div>
+      </div>
+      <div class="mini-tiers">
+        ${s.tiers.map(t => `<div><span>${esc(t.name)}</span><span>от ${fmt(t.price)}</span></div>`).join("")}
+      </div>
+    </article>`).join("");
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView();
+</script>
+</body>
+</html>

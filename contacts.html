@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Контакты · MANTROGOR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="contacts.html">
+<header id="site-header"></header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <div class="prompt">mantrogor@studio:~$ <b>send</b> --request</div>
+      <h1>Контакты</h1>
+      <p>Заполните форму, скопируйте готовый текст и отправьте нам в Telegram. Ответим в течение пары часов.</p>
+    </div>
+    <div class="order" style="padding-bottom:64px">
+      <form class="req" id="reqForm" novalidate>
+        <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" autocomplete="name" placeholder="Алексей"></div>
+        <div class="field"><label for="f-contact">Telegram или телефон</label><input id="f-contact" name="contact" placeholder="@username или +380..."></div>
+        <div class="field"><label for="f-type">Услуга</label><select id="f-type" name="type"></select></div>
+        <div class="field"><label for="f-msg">Опишите задачу</label><textarea id="f-msg" name="msg" placeholder="Нужен бот для записи клиентов в барбершоп, с напоминаниями..."></textarea></div>
+        <div class="err" id="reqErr" hidden></div>
+        <button class="btn" type="submit">Сформировать заявку</button>
+        <div class="result" id="reqResult" hidden>
+          <span class="label">// заявка готова — отправьте её нам</span>
+          <pre id="reqText"></pre>
+          <button class="btn small ghost" type="button" id="copyReq">Скопировать текст</button>
+        </div>
+      </form>
+      <div class="contacts">
+        <div class="contact">
+          <span class="label">Telegram</span>
+          <div class="row"><span class="v" id="c-tg"></span><button class="btn small ghost" type="button" data-copy="c-tg">Копировать</button></div>
+        </div>
+        <div class="contact">
+          <span class="label">Email</span>
+          <div class="row"><span class="v" id="c-mail"></span><button class="btn small ghost" type="button" data-copy="c-mail">Копировать</button></div>
+        </div>
+        <div class="contact">
+          <span class="label">Часы работы</span>
+          <span class="v" id="c-hours"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">// вопросы</span>
+        <h2>Частые вопросы</h2>
+      </div>
+      <div class="faq">
+        <details><summary>Кому принадлежит код?</summary><p>Вам. После полной оплаты передаём исходники, доступы к хостингу, домену и боту.</p></details>
+        <details><summary>Нужно ли платить за хостинг?</summary><p>Да, хостинг и домен оплачиваются отдельно, обычно $3–10 в месяц. Поможем выбрать и всё настроим.</p></details>
+        <details><summary>Можно ли изменить проект после сдачи?</summary><p>Мелкие правки 30 дней бесплатно. Новые функции оцениваем отдельно, как небольшой проект.</p></details>
+        <details><summary>Как можно оплатить?</summary><p>На карту, через PayPal или в USDT. 50% перед стартом, 50% после сдачи.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+  const { data, esc, copy } = M;
+  document.getElementById("c-tg").textContent = data.contacts.telegram;
+  document.getElementById("c-mail").textContent = data.contacts.email;
+  document.getElementById("c-hours").textContent = data.contacts.hours;
+
+  const form = document.getElementById("reqForm");
+  form.type.innerHTML = [...data.services.map(s => s.title), "Комплекс: несколько услуг", "Пока не знаю, нужна консультация"]
+    .map(o => `<option>${esc(o)}</option>`).join("");
+
+  // Расчёт из калькулятора
+  try {
+    const c = JSON.parse(localStorage.getItem("mantrogor-calc") || "null");
+    if (c) {
+      if ([...form.type.options].some(o => o.value === c.service)) form.type.value = c.service;
+      form.msg.value = "Расчёт из калькулятора: " + c.summary + "\n";
+      localStorage.removeItem("mantrogor-calc");
+    }
+  } catch (_) {}
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const name = form.name.value.trim(), contact = form.contact.value.trim(), msg = form.msg.value.trim();
+    const err = document.getElementById("reqErr");
+    const missing = [];
+    if (!name) missing.push("имя");
+    if (!contact) missing.push("контакт для связи");
+    if (!msg) missing.push("описание задачи");
+    if (missing.length) { err.textContent = "Заполните: " + missing.join(", ") + "."; err.hidden = false; document.getElementById("reqResult").hidden = true; return; }
+    err.hidden = true;
+    document.getElementById("reqText").textContent =
+      `Заявка MANTROGOR\nИмя: ${name}\nКонтакт: ${contact}\nУслуга: ${form.type.value}\nЗадача: ${msg}`;
+    document.getElementById("reqResult").hidden = false;
+  });
+  document.getElementById("copyReq").addEventListener("click", e => copy(document.getElementById("reqText").textContent, e.currentTarget));
+  document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => copy(document.getElementById(b.dataset.copy).textContent, b)));
+</script>
+</body>
+</html>

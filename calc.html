@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор · MANTROGOR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="calc.html">
+<header id="site-header"></header>
+
+<main>
+  <div class="wrap">
+    <div class="page-head">
+      <div class="prompt">mantrogor@studio:~$ <b>estimate</b> --project</div>
+      <h1>Калькулятор</h1>
+      <p>Выберите тариф и нужные опции. Получите ориентир по цене и срокам, а потом отправьте его нам в заявке.</p>
+    </div>
+    <div class="calc" style="padding-bottom:64px">
+      <form class="calc-form" id="calcForm">
+        <fieldset>
+          <legend class="label">Что делаем</legend>
+          <div id="calcType" style="display:grid;gap:14px"></div>
+        </fieldset>
+        <fieldset>
+          <legend class="label">Дополнительно</legend>
+          <div class="opts" id="calcExtras"></div>
+        </fieldset>
+        <fieldset>
+          <legend class="label">Срочность</legend>
+          <div class="opts" id="calcSpeed"></div>
+        </fieldset>
+      </form>
+      <aside class="calc-out" aria-live="polite">
+        <span class="label">// итого</span>
+        <div class="total" id="calcTotal">—</div>
+        <div class="days" id="calcDays"></div>
+        <div class="lines" id="calcLines"></div>
+        <a class="btn" href="contacts.html" id="toOrder">Оформить заявку</a>
+      </aside>
+    </div>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script>
+  const { data, fmt, esc } = M;
+  const SPEEDS = [
+    { id: "normal", label: "Обычно", k: 1, d: 1 },
+    { id: "fast", label: "Быстрее (+30%)", k: 1.3, d: 0.7 },
+    { id: "rush", label: "Срочно (+60%)", k: 1.6, d: 0.5 }
+  ];
+  const opt = (name, type, value, label, checked) =>
+    `<label class="opt"><input type="${type}" name="${name}" id="c-${name}-${value}" value="${value}"${checked ? " checked" : ""}><span>${label}</span></label>`;
+
+  document.getElementById("calcType").innerHTML = data.services.map((s, si) => `
+    <div style="display:grid;gap:8px">
+      <span class="group-name">${esc(s.title)}</span>
+      <div class="opts">${s.tiers.map((t, ti) => opt("ctype", "radio", si + "-" + ti, esc(t.name) + " · " + fmt(t.price), si === 0 && ti === 0)).join("")}</div>
+    </div>`).join("");
+  document.getElementById("calcExtras").innerHTML = data.extras.map((x, i) => opt("cextra", "checkbox", i, esc(x.name) + " · +" + fmt(x.price), false)).join("");
+  document.getElementById("calcSpeed").innerHTML = SPEEDS.map((s, i) => opt("cspeed", "radio", s.id, s.label, i === 0)).join("");
+
+  let summary = "", serviceTitle = "";
+  function calc() {
+    const f = document.getElementById("calcForm");
+    const [si, ti] = f.querySelector('[name="ctype"]:checked').value.split("-").map(Number);
+    const svc = data.services[si], t = svc.tiers[ti];
+    const ex = [...f.querySelectorAll('[name="cextra"]:checked')].map(i => data.extras[+i.value]);
+    const s = SPEEDS.find(x => x.id === f.querySelector('[name="cspeed"]:checked').value);
+    const base = Number(t.price) + ex.reduce((a, e) => a + Number(e.price), 0);
+    const total = Math.round(base * s.k / 10) * 10;
+    const days = Math.max(2, Math.round((Number(t.days) + ex.reduce((a, e) => a + Number(e.days), 0)) * s.d));
+    document.getElementById("calcTotal").textContent = "≈ " + fmt(total);
+    document.getElementById("calcDays").textContent = "срок: ~" + days + " раб. дней";
+    const lines = [[t.name, fmt(t.price)], ...ex.map(e => [e.name, "+" + fmt(e.price)])];
+    if (s.k > 1) lines.push(["Срочность ×" + s.k, "+" + fmt(total - base)]);
+    document.getElementById("calcLines").innerHTML = lines.map(l => `<div><span>${esc(l[0])}</span><span>${l[1]}</span></div>`).join("");
+    serviceTitle = svc.title;
+    summary = `${svc.title}: ${t.name}${ex.length ? " + " + ex.map(e => e.name.toLowerCase()).join(", ") : ""}; ${s.label.toLowerCase()}. Оценка: ${fmt(total)}, ~${days} дн.`;
+  }
+  document.getElementById("calcForm").addEventListener("change", calc);
+  calc();
+  document.getElementById("toOrder").addEventListener("click", () => {
+    try { localStorage.setItem("mantrogor-calc", JSON.stringify({ service: serviceTitle, summary })); } catch (_) {}
+  });
+</script>
+</body>
+</html>
