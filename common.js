@@ -12,7 +12,7 @@
     if (saved && saved.v === 2) data = saved;
   } catch (_) {}
 
-  // Язык: ?lang=xx в адресе → выбор посетителя → язык браузера → английский.
+  // Язык: ?lang=xx в адресе → выбор посетителя → язык браузера → чешский.
   function detectLang() {
     const q = new URLSearchParams(location.search).get("lang");
     if (codes.includes(q)) { try { localStorage.setItem(LANG_KEY, q); } catch (_) {} return q; }
@@ -21,7 +21,7 @@
       const c = l.toLowerCase().slice(0, 2);
       if (codes.includes(c)) return c;
     }
-    return "en";
+    return "cs";
   }
   const lang = detectLang();
   document.documentElement.lang = lang;
