@@ -1,35 +1,35 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Цены · MANTROGOR</title>
+<title>MANTROGOR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="prices.html">
+<body data-page="prices.html" data-title="nav_prices">
 <header id="site-header"></header>
 
 <main>
   <div class="wrap">
     <div class="page-head">
       <div class="prompt">mantrogor@studio:~$ <b>cat</b> prices.txt</div>
-      <h1>Цены</h1>
-      <p>Цена фиксируется в договоре до начала работы и не растёт по ходу проекта.</p>
+      <h1 data-i18n="nav_prices"></h1>
+      <p data-i18n="pr_lead"></p>
     </div>
-    <div class="tabs" role="tablist" aria-label="Категория" id="tabs"></div>
+    <div class="tabs" role="tablist" id="tabs"></div>
     <div class="tiers" id="tiers" role="tabpanel"></div>
-    <p class="note">* Цены в долларах США. Точная сумма зависит от объёма, считаем бесплатно за 1 день.</p>
+    <p class="note" data-i18n="pr_note"></p>
   </div>
 
   <section class="block" style="margin-top:48px">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">// дополнительно</span>
-        <h2>Доп. опции</h2>
-        <p>Добавляются к любому тарифу.</p>
+        <span class="label">// add-ons</span>
+        <h2 data-i18n="extras_title"></h2>
+        <p data-i18n="extras_lead"></p>
       </div>
       <div class="extras-table" id="extras"></div>
     </div>
@@ -38,32 +38,33 @@
 
 <footer id="site-footer"></footer>
 <script src="data.js"></script>
+<script src="i18n.js"></script>
 <script src="common.js"></script>
 <script>
-  const { data, fmt, esc } = M;
+  const { data, fmt, esc, t, tr, days } = M;
   const tabsEl = document.getElementById("tabs"), tiersEl = document.getElementById("tiers");
   tabsEl.innerHTML = data.services.map(s =>
-    `<button class="tab" role="tab" id="tab-${esc(s.id)}" data-id="${esc(s.id)}" aria-selected="false">${esc(s.title)}</button>`).join("");
+    `<button class="tab" role="tab" id="tab-${esc(s.id)}" data-id="${esc(s.id)}" aria-selected="false">${esc(tr(s.title))}</button>`).join("");
 
   function show(id) {
     const s = data.services.find(x => x.id === id) || data.services[0];
     tabsEl.querySelectorAll(".tab").forEach(b => b.setAttribute("aria-selected", String(b.dataset.id === s.id)));
     tiersEl.setAttribute("aria-labelledby", "tab-" + s.id);
-    tiersEl.innerHTML = s.tiers.map(t => `
-      <article class="tier${t.hot ? " hot" : ""}">
-        ${t.hot ? '<span class="badge">чаще заказывают</span>' : ""}
-        <h3>${esc(t.name)}</h3>
-        <div class="price"><small>от </small>${fmt(t.price)}</div>
-        <div class="term">срок: ~${Number(t.days) || "?"} раб. дней</div>
-        <ul>${t.items.map(i => `<li>${esc(i)}</li>`).join("")}</ul>
-        <a class="btn small${t.hot ? "" : " ghost"}" href="contacts.html">Обсудить</a>
+    tiersEl.innerHTML = s.tiers.map(x => `
+      <article class="tier${x.hot ? " hot" : ""}">
+        ${x.hot ? `<span class="badge">${esc(t("hot"))}</span>` : ""}
+        <h3>${esc(tr(x.name))}</h3>
+        <div class="price"><small>${esc(t("from"))} </small>${fmt(x.price)}</div>
+        <div class="term">${esc(t("term"))}: ${esc(days(Number(x.days) || 1))}</div>
+        <ul>${tr(x.items).map(i => `<li>${esc(i)}</li>`).join("")}</ul>
+        <a class="btn small${x.hot ? "" : " ghost"}" href="contacts.html">${esc(t("discuss"))}</a>
       </article>`).join("");
   }
   tabsEl.addEventListener("click", e => { const b = e.target.closest(".tab"); if (b) show(b.dataset.id); });
   show(location.hash.slice(1));
 
   document.getElementById("extras").innerHTML = data.extras.map(x =>
-    `<div><span>${esc(x.name)}</span><span>+${fmt(x.price)}</span></div>`).join("");
+    `<div><span>${esc(tr(x.name))}</span><span>+${fmt(x.price)}</span></div>`).join("");
 </script>
 </body>
 </html>

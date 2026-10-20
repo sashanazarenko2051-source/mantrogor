@@ -57,7 +57,16 @@ header.top .wrap { display: flex; align-items: center; justify-content: space-be
 .logo-mark { width: 26px; height: 26px; border: 2px solid var(--cyan); transform: rotate(45deg); display: grid; place-items: center; }
 .logo-mark::after { content: ""; width: 8px; height: 8px; background: var(--magenta); }
 nav.links { display: flex; gap: 22px; flex-wrap: wrap; }
-nav.links a { color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: 13px; padding-block: 4px; border-bottom: 1px solid transparent; }
+nav.links a { color: var(--muted); text-decoration: none; font-family: var(--font-mono); font-size: 13px; padding-block: 4px; border-bottom: 1px solid transparent; text-transform: lowercase; }
+.head-right { display: flex; align-items: center; gap: 10px; }
+.lang { position: relative; }
+.lang-btn { background: transparent; border: 1px solid var(--line); color: var(--fg); font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; padding: 9px 12px; cursor: pointer; }
+.lang-btn:hover, .lang-btn[aria-expanded="true"] { border-color: var(--cyan); color: var(--cyan); }
+.lang-list { position: absolute; right: 0; top: calc(100% + 6px); z-index: 20; min-width: 190px; background: var(--panel); border: 1px solid var(--cyan); display: grid; padding: 6px; }
+.lang-list button { display: flex; gap: 12px; align-items: center; background: transparent; border: 0; color: var(--muted); font-family: var(--font-body); font-size: 14px; text-align: left; padding: 9px 10px; cursor: pointer; }
+.lang-list button b { font-family: var(--font-mono); font-size: 12px; color: var(--cyan); width: 22px; }
+.lang-list button:hover { background: var(--panel-2); color: var(--fg); }
+.lang-list button[aria-current="true"] { color: var(--fg); background: color-mix(in srgb, var(--cyan) 12%, transparent); }
 nav.links a:hover { color: var(--cyan); }
 nav.links a[aria-current="page"] { color: var(--cyan); border-bottom-color: var(--cyan); }
 .menu-btn { display: none; background: none; border: 1px solid var(--line); color: var(--fg); font-family: var(--font-mono); padding: 8px 12px; cursor: pointer; }

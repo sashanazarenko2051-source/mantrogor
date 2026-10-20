@@ -1,15 +1,15 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MANTROGOR — сайты, боты, программы</title>
+<title>MANTROGOR</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
-<body data-page="index.html">
+<body data-page="index.html" data-title="home">
 <header id="site-header"></header>
 
 <main>
@@ -17,16 +17,16 @@
     <section class="hero">
       <div class="prompt">mantrogor@studio:~$ <b>build</b> --site --bot --app <span class="caret"></span></div>
       <h1 class="glitch" data-text="MANTROGOR">MANTROGOR</h1>
-      <p class="hero-sub">Делаем <strong>сайты</strong>, <strong>Telegram-ботов</strong> и <strong>программы</strong> под вашу задачу. Фиксированная цена до старта, рабочий результат по этапам, исходный код остаётся у вас.</p>
+      <p class="hero-sub" data-i18n-html="hero_sub"></p>
       <div class="cta-row">
-        <a class="btn" href="calc.html">Рассчитать стоимость</a>
-        <a class="btn ghost" href="prices.html">Смотреть цены</a>
+        <a class="btn" href="calc.html" data-i18n="cta_calc"></a>
+        <a class="btn ghost" href="prices.html" data-i18n="cta_prices"></a>
       </div>
       <div class="stats">
-        <div><div class="n">от 3 дней</div><div class="t">срок запуска лендинга</div></div>
-        <div><div class="n" id="minOrder">—</div><div class="t">минимальный заказ</div></div>
-        <div><div class="n">30 дней</div><div class="t">бесплатных правок после сдачи</div></div>
-        <div><div class="n">50 / 50</div><div class="t">предоплата и оплата по сдаче</div></div>
+        <div><div class="n" data-i18n="st1n"></div><div class="t" data-i18n="st1t"></div></div>
+        <div><div class="n" id="minOrder">—</div><div class="t" data-i18n="st2t"></div></div>
+        <div><div class="n" data-i18n="st3n"></div><div class="t" data-i18n="st3t"></div></div>
+        <div><div class="n">50 / 50</div><div class="t" data-i18n="st4t"></div></div>
       </div>
     </section>
   </div>
@@ -34,8 +34,8 @@
   <section class="block">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">// направления</span>
-        <h2>Что мы собираем</h2>
+        <span class="label">// directions</span>
+        <h2 data-i18n="dir_title"></h2>
       </div>
       <div class="services" id="svcCards"></div>
     </div>
@@ -44,39 +44,40 @@
   <section class="block">
     <div class="wrap">
       <div class="sec-head">
-        <span class="label">// процесс</span>
-        <h2>Как работаем</h2>
+        <span class="label">// process</span>
+        <h2 data-i18n="proc_title"></h2>
       </div>
       <div class="steps">
-        <div class="step"><span class="num">01</span><h3>Заявка</h3><p>Вы описываете задачу, мы задаём вопросы.</p></div>
-        <div class="step"><span class="num">02</span><h3>Смета и ТЗ</h3><p>Фиксируем цену, сроки и список функций.</p></div>
-        <div class="step"><span class="num">03</span><h3>Предоплата 50%</h3><p>Стартуем, показываем прогресс каждые 2–3 дня.</p></div>
-        <div class="step"><span class="num">04</span><h3>Сдача</h3><p>Тестируете, вносим правки, оплачиваете остаток.</p></div>
-        <div class="step"><span class="num">05</span><h3>Поддержка</h3><p>30 дней бесплатных правок, дальше по договорённости.</p></div>
+        <div class="step"><span class="num">01</span><h3 data-i18n="s1t"></h3><p data-i18n="s1p"></p></div>
+        <div class="step"><span class="num">02</span><h3 data-i18n="s2t"></h3><p data-i18n="s2p"></p></div>
+        <div class="step"><span class="num">03</span><h3 data-i18n="s3t"></h3><p data-i18n="s3p"></p></div>
+        <div class="step"><span class="num">04</span><h3 data-i18n="s4t"></h3><p data-i18n="s4p"></p></div>
+        <div class="step"><span class="num">05</span><h3 data-i18n="s5t"></h3><p data-i18n="s5p"></p></div>
       </div>
     </div>
   </section>
 
   <section class="cta-band">
     <div class="wrap">
-      <h2>Есть задача? Посчитаем за 1 день.</h2>
-      <a class="btn" href="contacts.html">Оставить заявку</a>
+      <h2 data-i18n="band_home"></h2>
+      <a class="btn" href="contacts.html" data-i18n="band_home_btn"></a>
     </div>
   </section>
 </main>
 
 <footer id="site-footer"></footer>
 <script src="data.js"></script>
+<script src="i18n.js"></script>
 <script src="common.js"></script>
 <script>
-  const { data, fmt, esc, minPrice } = M;
+  const { data, fmt, esc, minPrice, t, tr } = M;
   document.getElementById("minOrder").textContent = fmt(Math.min(...data.services.map(minPrice)));
   document.getElementById("svcCards").innerHTML = data.services.map(s => `
     <a class="svc" href="services.html#${esc(s.id)}">
       <span class="code">${esc(s.code)}</span>
-      <h3>${esc(s.title)}</h3>
-      <p>${esc(s.desc)}</p>
-      <div class="from">от ${fmt(minPrice(s))} →</div>
+      <h3>${esc(tr(s.title))}</h3>
+      <p>${esc(tr(s.desc))}</p>
+      <div class="from">${esc(t("from"))} ${fmt(minPrice(s))} →</div>
     </a>`).join("");
 </script>
 </body>
