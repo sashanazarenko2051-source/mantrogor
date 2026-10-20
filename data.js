@@ -226,6 +226,84 @@ window.MANTROGOR_DATA = {
       ]
     }
   ],
+  "projects": [
+    {
+      "title": "Cukrárna CakeMe",
+      "url": "https://cukrarna-cakeme.onrender.com/",
+      "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
+      "host": "Render",
+      "image": "projects/cakeme.jpg",
+      "tags": ["FastAPI", "PostgreSQL", "Stripe", "Push"],
+      "desc": {
+        "ru": "Сайт кондитерской в Праге: меню, заказ тортов с онлайн-оплатой, доставка, админ-панель и несколько языков.",
+        "uk": "Сайт кондитерської в Празі: меню, замовлення тортів з онлайн-оплатою, доставка, адмін-панель і кілька мов.",
+        "en": "Website for a Prague patisserie: menu, cake orders with online payment, delivery, admin panel and several languages.",
+        "cs": "Web cukrárny v Praze: menu, objednávky dortů s online platbou, rozvoz, administrace a více jazyků.",
+        "pl": "Strona cukierni w Pradze: menu, zamówienia tortów z płatnością online, dostawa, panel administracyjny i kilka języków.",
+        "de": "Website einer Prager Konditorei: Menü, Tortenbestellung mit Online-Zahlung, Lieferung, Admin-Bereich und mehrere Sprachen.",
+        "fr": "Site d'une pâtisserie à Prague : menu, commande de gâteaux avec paiement en ligne, livraison, administration et plusieurs langues.",
+        "es": "Web de una pastelería en Praga: menú, pedidos de tartas con pago online, entrega a domicilio, panel de administración y varios idiomas.",
+        "it": "Sito di una pasticceria a Praga: menu, ordini di torte con pagamento online, consegna, pannello di gestione e più lingue."
+      }
+    },
+    {
+      "title": "Nice Shopping",
+      "url": "https://nice-shopping.onrender.com/",
+      "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
+      "host": "Render",
+      "image": "projects/niceshop.jpg",
+      "tags": ["FastAPI", "SQLite", "Telegram"],
+      "desc": {
+        "ru": "Интернет-магазин белья и носков: каталог, корзина, оформление заказа, отслеживание, отзывы, админка и уведомления о заказах в Telegram.",
+        "uk": "Інтернет-магазин білизни та шкарпеток: каталог, кошик, оформлення замовлення, відстеження, відгуки, адмінка й сповіщення про замовлення в Telegram.",
+        "en": "Online store for underwear and socks: catalog, cart, checkout, order tracking, reviews, admin panel and Telegram order alerts.",
+        "cs": "E-shop se spodním prádlem a ponožkami: katalog, košík, objednávka, sledování zásilky, recenze, administrace a upozornění na objednávky v Telegramu.",
+        "pl": "Sklep internetowy z bielizną i skarpetkami: katalog, koszyk, zamówienie, śledzenie, opinie, panel administracyjny i powiadomienia o zamówieniach w Telegramie.",
+        "de": "Onlineshop für Unterwäsche und Socken: Katalog, Warenkorb, Bestellung, Sendungsverfolgung, Bewertungen, Admin-Bereich und Bestell-Benachrichtigungen in Telegram.",
+        "fr": "Boutique en ligne de sous-vêtements et chaussettes : catalogue, panier, commande, suivi, avis, administration et alertes de commande sur Telegram.",
+        "es": "Tienda online de ropa interior y calcetines: catálogo, carrito, pedido, seguimiento, reseñas, panel de administración y avisos de pedidos en Telegram.",
+        "it": "Negozio online di intimo e calzini: catalogo, carrello, ordine, tracciamento, recensioni, pannello di gestione e notifiche degli ordini su Telegram."
+      }
+    },
+    {
+      "title": "Transpika",
+      "url": "https://sashanazarenko2051-source.github.io/transpika-site/",
+      "repo": "https://github.com/sashanazarenko2051-source/transpika-site",
+      "host": "GitHub Pages",
+      "image": "projects/transpika.jpg",
+      "tags": ["HTML", "CSS", "JavaScript"],
+      "desc": {
+        "ru": "Сайт перевозчика Чехия ↔ Украина: маршруты, цены, отзывы, регистрация и личный кабинет.",
+        "uk": "Сайт перевізника Чехія ↔ Україна: маршрути, ціни, відгуки, реєстрація та особистий кабінет.",
+        "en": "Website for a Czechia ↔ Ukraine carrier: routes, prices, reviews, sign-up and customer account.",
+        "cs": "Web dopravce Česko ↔ Ukrajina: trasy, ceny, recenze, registrace a zákaznický účet.",
+        "pl": "Strona przewoźnika Czechy ↔ Ukraina: trasy, ceny, opinie, rejestracja i konto klienta.",
+        "de": "Website eines Transportunternehmens Tschechien ↔ Ukraine: Routen, Preise, Bewertungen, Registrierung und Kundenkonto.",
+        "fr": "Site d'un transporteur Tchéquie ↔ Ukraine : itinéraires, tarifs, avis, inscription et espace client.",
+        "es": "Web de una empresa de transporte Chequia ↔ Ucrania: rutas, precios, reseñas, registro y área de cliente.",
+        "it": "Sito di un trasportatore Cechia ↔ Ucraina: tratte, prezzi, recensioni, registrazione e area clienti."
+      }
+    },
+    {
+      "title": "WO Lingua Lab",
+      "url": "https://sashanazarenko2051-source.github.io/lingualab/",
+      "repo": "https://github.com/sashanazarenko2051-source/lingualab",
+      "host": "GitHub Pages",
+      "image": "projects/lingualab.jpg",
+      "tags": ["JavaScript", "PWA", "Python", "TTS"],
+      "desc": {
+        "ru": "Приложение для изучения языков: 8000 слов на язык, уровни A0–B2, озвучка; работает в браузере, на телефоне и как программа для Windows.",
+        "uk": "Застосунок для вивчення мов: 8000 слів на мову, рівні A0–B2, озвучення; працює в браузері, на телефоні та як програма для Windows.",
+        "en": "Language-learning app: 8,000 words per language, levels A0–B2, voice-over; works in the browser, on phones and as a Windows program.",
+        "cs": "Aplikace na učení jazyků: 8 000 slov pro každý jazyk, úrovně A0–B2, výslovnost; funguje v prohlížeči, v mobilu i jako program pro Windows.",
+        "pl": "Aplikacja do nauki języków: 8000 słów na język, poziomy A0–B2, lektor; działa w przeglądarce, na telefonie i jako program na Windows.",
+        "de": "App zum Sprachenlernen: 8.000 Wörter pro Sprache, Niveaus A0–B2, Sprachausgabe; läuft im Browser, auf dem Handy und als Windows-Programm.",
+        "fr": "Application d'apprentissage des langues : 8 000 mots par langue, niveaux A0–B2, prononciation audio ; fonctionne dans le navigateur, sur mobile et comme logiciel Windows.",
+        "es": "App para aprender idiomas: 8000 palabras por idioma, niveles A0–B2, locución; funciona en el navegador, en el móvil y como programa para Windows.",
+        "it": "App per imparare le lingue: 8000 parole per lingua, livelli A0–B2, pronuncia audio; funziona nel browser, sullo smartphone e come programma Windows."
+      }
+    }
+  ],
   "extras": [
     { "price": 100, "days": 3, "name": { "ru": "Уникальный дизайн", "uk": "Унікальний дизайн", "en": "Custom design", "cs": "Unikátní design", "pl": "Unikalny projekt graficzny", "de": "Individuelles Design", "fr": "Design unique", "es": "Diseño único", "it": "Design unico" } },
     { "price": 90, "days": 2, "name": { "ru": "Онлайн-оплата", "uk": "Онлайн-оплата", "en": "Online payment", "cs": "Online platby", "pl": "Płatności online", "de": "Online-Zahlung", "fr": "Paiement en ligne", "es": "Pago online", "it": "Pagamento online" } },

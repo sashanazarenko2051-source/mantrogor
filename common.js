@@ -74,6 +74,7 @@
   const PAGES = [
     ["index.html", "nav_home"],
     ["services.html", "nav_services"],
+    ["projects.html", "nav_projects"],
     ["prices.html", "nav_prices"],
     ["calc.html", "nav_calc"],
     ["contacts.html", "nav_contacts"]
@@ -169,6 +170,25 @@
     still ? draw(0) : requestAnimationFrame(draw);
   }
 
-  window.M = { data, fmt, esc, copy, minPrice, STORE_KEY, t, tr, days, lang, LANGS, isLoc };
+  // Карточка проекта для главной и страницы «Проекты».
+  const projectCard = p => `
+    <article class="proj">
+      <a class="proj-shot" href="${esc(p.url)}" target="_blank" rel="noopener" aria-label="${esc(p.title)}">
+        <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="800" height="500">
+        <span class="proj-host">${esc(p.host)}</span>
+      </a>
+      <div class="proj-body">
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(tr(p.desc))}</p>
+        <div class="proj-tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
+        ${p.host === "Render" ? `<div class="proj-wake">${esc(t("proj_wake"))}</div>` : ""}
+        <div class="cta-row">
+          <a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t("proj_open"))} ↗</a>
+          ${p.repo ? `<a class="btn small ghost" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(t("proj_code"))}</a>` : ""}
+        </div>
+      </div>
+    </article>`;
+
+  window.M = { data, fmt, esc, copy, minPrice, STORE_KEY, t, tr, days, lang, LANGS, isLoc, projectCard };
   header(); footer(); apply(); grid();
 })();

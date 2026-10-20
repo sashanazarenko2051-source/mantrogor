@@ -13,7 +13,8 @@ window.MANTROGOR_LANGS = [
 
 window.I18N = {
   ru: {
-    nav_home: "Главная", nav_services: "Услуги", nav_prices: "Цены", nav_calc: "Калькулятор", nav_contacts: "Контакты",
+    nav_home: "Главная", nav_services: "Услуги", nav_prices: "Цены", nav_calc: "Калькулятор", nav_contacts: "Контакты", nav_projects: "Проекты",
+    proj_lead: "Работающие проекты, которые можно открыть и посмотреть прямо сейчас.", proj_open: "Открыть сайт", proj_code: "Код на GitHub", proj_all: "Все проекты", proj_wake: "Первое открытие может занять до минуты", proj_title: "Наши проекты",
     order: "Заказать", menu: "меню", lang: "Язык", tagline: "сайты · боты · программы",
     hero_sub: "Делаем <strong>сайты</strong>, <strong>Telegram-ботов</strong> и <strong>программы</strong> под вашу задачу. Фиксированная цена до старта, рабочий результат по этапам, исходный код остаётся у вас.",
     cta_calc: "Рассчитать стоимость", cta_prices: "Смотреть цены",
@@ -56,7 +57,8 @@ window.I18N = {
   },
 
   uk: {
-    nav_home: "Головна", nav_services: "Послуги", nav_prices: "Ціни", nav_calc: "Калькулятор", nav_contacts: "Контакти",
+    nav_home: "Головна", nav_services: "Послуги", nav_prices: "Ціни", nav_calc: "Калькулятор", nav_contacts: "Контакти", nav_projects: "Проєкти",
+    proj_lead: "Робочі проєкти, які можна відкрити й переглянути просто зараз.", proj_open: "Відкрити сайт", proj_code: "Код на GitHub", proj_all: "Усі проєкти", proj_wake: "Перше відкриття може тривати до хвилини", proj_title: "Наші проєкти",
     order: "Замовити", menu: "меню", lang: "Мова", tagline: "сайти · боти · програми",
     hero_sub: "Робимо <strong>сайти</strong>, <strong>Telegram-ботів</strong> і <strong>програми</strong> під ваше завдання. Фіксована ціна до старту, робочий результат поетапно, вихідний код залишається у вас.",
     cta_calc: "Розрахувати вартість", cta_prices: "Дивитися ціни",
@@ -99,7 +101,8 @@ window.I18N = {
   },
 
   en: {
-    nav_home: "Home", nav_services: "Services", nav_prices: "Prices", nav_calc: "Calculator", nav_contacts: "Contacts",
+    nav_home: "Home", nav_services: "Services", nav_prices: "Prices", nav_calc: "Calculator", nav_contacts: "Contacts", nav_projects: "Projects",
+    proj_lead: "Live projects you can open and try right now.", proj_open: "Open site", proj_code: "Code on GitHub", proj_all: "All projects", proj_wake: "First load may take up to a minute", proj_title: "Our projects",
     order: "Order", menu: "menu", lang: "Language", tagline: "websites · bots · software",
     hero_sub: "We build <strong>websites</strong>, <strong>Telegram bots</strong> and <strong>software</strong> for your task. Fixed price before we start, working results at every stage, and the source code stays with you.",
     cta_calc: "Estimate the cost", cta_prices: "See prices",
@@ -142,7 +145,8 @@ window.I18N = {
   },
 
   cs: {
-    nav_home: "Úvod", nav_services: "Služby", nav_prices: "Ceník", nav_calc: "Kalkulačka", nav_contacts: "Kontakty",
+    nav_home: "Úvod", nav_services: "Služby", nav_prices: "Ceník", nav_calc: "Kalkulačka", nav_contacts: "Kontakty", nav_projects: "Projekty",
+    proj_lead: "Funkční projekty, které si můžete hned otevřít a vyzkoušet.", proj_open: "Otevřít web", proj_code: "Kód na GitHubu", proj_all: "Všechny projekty", proj_wake: "První načtení může trvat až minutu", proj_title: "Naše projekty",
     order: "Objednat", menu: "menu", lang: "Jazyk", tagline: "weby · boti · software",
     hero_sub: "Vytváříme <strong>weby</strong>, <strong>Telegram boty</strong> a <strong>software</strong> na míru vašemu zadání. Pevná cena před startem, funkční výsledky po etapách a zdrojový kód zůstává vám.",
     cta_calc: "Spočítat cenu", cta_prices: "Zobrazit ceník",
@@ -185,7 +189,8 @@ window.I18N = {
   },
 
   pl: {
-    nav_home: "Start", nav_services: "Usługi", nav_prices: "Cennik", nav_calc: "Kalkulator", nav_contacts: "Kontakt",
+    nav_home: "Start", nav_services: "Usługi", nav_prices: "Cennik", nav_calc: "Kalkulator", nav_contacts: "Kontakt", nav_projects: "Projekty",
+    proj_lead: "Działające projekty, które możesz od razu otworzyć i sprawdzić.", proj_open: "Otwórz stronę", proj_code: "Kod na GitHubie", proj_all: "Wszystkie projekty", proj_wake: "Pierwsze otwarcie może potrwać do minuty", proj_title: "Nasze projekty",
     order: "Zamów", menu: "menu", lang: "Język", tagline: "strony · boty · programy",
     hero_sub: "Tworzymy <strong>strony internetowe</strong>, <strong>boty na Telegram</strong> i <strong>programy</strong> pod Twoje zadanie. Stała cena przed startem, działające efekty na każdym etapie, a kod źródłowy zostaje u Ciebie.",
     cta_calc: "Oblicz koszt", cta_prices: "Zobacz cennik",
@@ -228,7 +233,8 @@ window.I18N = {
   },
 
   de: {
-    nav_home: "Start", nav_services: "Leistungen", nav_prices: "Preise", nav_calc: "Rechner", nav_contacts: "Kontakt",
+    nav_home: "Start", nav_services: "Leistungen", nav_prices: "Preise", nav_calc: "Rechner", nav_contacts: "Kontakt", nav_projects: "Projekte",
+    proj_lead: "Laufende Projekte, die Sie sofort öffnen und ausprobieren können.", proj_open: "Website öffnen", proj_code: "Code auf GitHub", proj_all: "Alle Projekte", proj_wake: "Der erste Aufruf kann bis zu einer Minute dauern", proj_title: "Unsere Projekte",
     order: "Anfragen", menu: "Menü", lang: "Sprache", tagline: "Websites · Bots · Software",
     hero_sub: "Wir entwickeln <strong>Websites</strong>, <strong>Telegram-Bots</strong> und <strong>Software</strong> für Ihre Aufgabe. Festpreis vor dem Start, funktionierende Ergebnisse in jeder Phase, und der Quellcode gehört Ihnen.",
     cta_calc: "Kosten berechnen", cta_prices: "Preise ansehen",
@@ -271,7 +277,8 @@ window.I18N = {
   },
 
   fr: {
-    nav_home: "Accueil", nav_services: "Services", nav_prices: "Tarifs", nav_calc: "Calculateur", nav_contacts: "Contact",
+    nav_home: "Accueil", nav_services: "Services", nav_prices: "Tarifs", nav_calc: "Calculateur", nav_contacts: "Contact", nav_projects: "Projets",
+    proj_lead: "Des projets en ligne que vous pouvez ouvrir et essayer dès maintenant.", proj_open: "Ouvrir le site", proj_code: "Code sur GitHub", proj_all: "Tous les projets", proj_wake: "Le premier chargement peut prendre jusqu'à une minute", proj_title: "Nos projets",
     order: "Commander", menu: "menu", lang: "Langue", tagline: "sites · bots · logiciels",
     hero_sub: "Nous créons des <strong>sites web</strong>, des <strong>bots Telegram</strong> et des <strong>logiciels</strong> adaptés à votre besoin. Prix fixe avant le démarrage, résultats concrets à chaque étape, et le code source vous appartient.",
     cta_calc: "Estimer le coût", cta_prices: "Voir les tarifs",
@@ -314,7 +321,8 @@ window.I18N = {
   },
 
   es: {
-    nav_home: "Inicio", nav_services: "Servicios", nav_prices: "Precios", nav_calc: "Calculadora", nav_contacts: "Contacto",
+    nav_home: "Inicio", nav_services: "Servicios", nav_prices: "Precios", nav_calc: "Calculadora", nav_contacts: "Contacto", nav_projects: "Proyectos",
+    proj_lead: "Proyectos en funcionamiento que puedes abrir y probar ahora mismo.", proj_open: "Abrir web", proj_code: "Código en GitHub", proj_all: "Todos los proyectos", proj_wake: "La primera carga puede tardar hasta un minuto", proj_title: "Nuestros proyectos",
     order: "Pedir", menu: "menú", lang: "Idioma", tagline: "webs · bots · software",
     hero_sub: "Creamos <strong>sitios web</strong>, <strong>bots de Telegram</strong> y <strong>software</strong> a medida de tu proyecto. Precio fijo antes de empezar, resultados funcionales en cada etapa y el código fuente es tuyo.",
     cta_calc: "Calcular el coste", cta_prices: "Ver precios",
@@ -357,7 +365,8 @@ window.I18N = {
   },
 
   it: {
-    nav_home: "Home", nav_services: "Servizi", nav_prices: "Prezzi", nav_calc: "Calcolatore", nav_contacts: "Contatti",
+    nav_home: "Home", nav_services: "Servizi", nav_prices: "Prezzi", nav_calc: "Calcolatore", nav_contacts: "Contatti", nav_projects: "Progetti",
+    proj_lead: "Progetti attivi che puoi aprire e provare subito.", proj_open: "Apri il sito", proj_code: "Codice su GitHub", proj_all: "Tutti i progetti", proj_wake: "Il primo caricamento può richiedere fino a un minuto", proj_title: "I nostri progetti",
     order: "Ordina", menu: "menu", lang: "Lingua", tagline: "siti · bot · software",
     hero_sub: "Realizziamo <strong>siti web</strong>, <strong>bot Telegram</strong> e <strong>software</strong> su misura per le tue esigenze. Prezzo fisso prima di iniziare, risultati funzionanti a ogni fase e il codice sorgente resta tuo.",
     cta_calc: "Calcola il costo", cta_prices: "Vedi i prezzi",

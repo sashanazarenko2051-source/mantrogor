@@ -57,6 +57,19 @@
 
   <section class="block">
     <div class="wrap">
+      <div class="sec-head sec-head-row">
+        <div style="display:grid;gap:12px">
+          <span class="label">// portfolio</span>
+          <h2 data-i18n="proj_title"></h2>
+        </div>
+        <a class="btn small ghost" href="projects.html"><span data-i18n="proj_all"></span> →</a>
+      </div>
+      <div class="projects" id="projCards"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
       <div class="sec-head">
         <span class="label">// process</span>
         <h2 data-i18n="proc_title"></h2>
@@ -93,6 +106,7 @@
       <p>${esc(tr(s.desc))}</p>
       <div class="from">${esc(t("from"))} ${fmt(minPrice(s))} →</div>
     </a>`).join("");
+  document.getElementById("projCards").innerHTML = (data.projects || []).slice(0, 2).map(M.projectCard).join("");
 </script>
 </body>
 </html>
