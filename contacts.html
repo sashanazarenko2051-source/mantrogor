@@ -36,11 +36,15 @@
       <div class="contacts">
         <div class="contact">
           <span class="label">Telegram</span>
-          <div class="row"><span class="v" id="c-tg"></span><button class="btn small ghost" type="button" data-copy="c-tg" data-i18n="copy"></button></div>
+          <div class="row"><a class="v" id="c-tg" target="_blank" rel="noopener"></a><button class="btn small ghost" type="button" data-copy="c-tg" data-i18n="copy"></button></div>
         </div>
         <div class="contact">
           <span class="label">Email</span>
-          <div class="row"><span class="v" id="c-mail"></span><button class="btn small ghost" type="button" data-copy="c-mail" data-i18n="copy"></button></div>
+          <div class="row"><a class="v" id="c-mail"></a><button class="btn small ghost" type="button" data-copy="c-mail" data-i18n="copy"></button></div>
+        </div>
+        <div class="contact" id="c-fb-card">
+          <span class="label">Facebook</span>
+          <div class="row"><a class="v" id="c-fb" target="_blank" rel="noopener">Facebook ↗</a></div>
         </div>
         <div class="contact">
           <span class="label" data-i18n="hours"></span>
@@ -72,8 +76,13 @@
 <script src="common.js"></script>
 <script>
   const { data, esc, copy, t, tr } = M;
-  document.getElementById("c-tg").textContent = data.contacts.telegram;
-  document.getElementById("c-mail").textContent = data.contacts.email;
+  const tg = document.getElementById("c-tg"), mail = document.getElementById("c-mail");
+  tg.textContent = data.contacts.telegram;
+  tg.href = "https://t.me/" + String(data.contacts.telegram).replace(/^@/, "");
+  mail.textContent = data.contacts.email;
+  mail.href = "mailto:" + data.contacts.email;
+  if (data.contacts.facebook) document.getElementById("c-fb").href = data.contacts.facebook;
+  else document.getElementById("c-fb-card").hidden = true;
   document.getElementById("c-hours").textContent = tr(data.contacts.hours);
 
   const form = document.getElementById("reqForm");

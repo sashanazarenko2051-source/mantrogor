@@ -251,7 +251,8 @@ form.req { background: var(--panel); border: 1px solid var(--line); padding: 28p
 .result pre { margin: 0; white-space: pre-wrap; word-break: break-word; font-family: var(--font-mono); font-size: 13px; color: var(--fg); background: var(--void); padding: 14px; border: 1px solid var(--line); }
 .contacts { display: grid; gap: 14px; align-content: start; }
 .contact { background: var(--panel); border: 1px solid var(--line); padding: 22px; display: grid; gap: 6px; }
-.contact .v { font-family: var(--font-mono); font-size: 18px; color: var(--fg); user-select: all; word-break: break-all; }
+.contact .v { font-family: var(--font-mono); font-size: 18px; color: var(--fg); word-break: break-all; text-decoration: none; }
+.contact a.v:hover { color: var(--cyan); text-decoration: underline; }
 .contact .row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
 
 .cta-band { padding-block: 56px; border-top: 1px solid var(--line); }

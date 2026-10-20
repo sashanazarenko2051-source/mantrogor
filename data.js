@@ -235,8 +235,9 @@ window.MANTROGOR_DATA = {
     { "price": 100, "days": 2, "name": { "ru": "Интеграция с CRM", "uk": "Інтеграція з CRM", "en": "CRM integration", "cs": "Napojení na CRM", "pl": "Integracja z CRM", "de": "CRM-Anbindung", "fr": "Intégration CRM", "es": "Integración con CRM", "it": "Integrazione CRM" } }
   ],
   "contacts": {
-    "telegram": "@mantrogor",
-    "email": "hello@mantrogor.dev",
+    "telegram": "@Nazarenko241",
+    "email": "sasha.nazarenko.2052@gmail.com",
+    "facebook": "https://www.facebook.com/profile.php?id=61585883942608",
     "hours": { "ru": "Пн–Сб, 10:00–20:00", "uk": "Пн–Сб, 10:00–20:00", "en": "Mon–Sat, 10:00–20:00", "cs": "Po–So, 10:00–20:00", "pl": "Pn–Sb, 10:00–20:00", "de": "Mo–Sa, 10:00–20:00", "fr": "Lun–Sam, 10h–20h", "es": "Lun–Sáb, 10:00–20:00", "it": "Lun–Sab, 10:00–20:00" }
   }
 };
