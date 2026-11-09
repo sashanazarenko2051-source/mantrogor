@@ -307,3 +307,6 @@ form.req { background: var(--panel); border: 1px solid var(--line); padding: 28p
 footer.bottom { position: relative; z-index: 1; border-top: 1px solid var(--line); padding-block: 28px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); background: var(--void); }
 footer.bottom .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
 footer.bottom a { color: var(--muted); }
+
+/* Узкие телефоны: заголовок по ширине экрана, страница не шире экрана */
+@media(max-width:420px){h1.glitch{font-size:clamp(30px,10.5vw,56px)!important;letter-spacing:.02em!important}html,body{overflow-x:hidden}}
