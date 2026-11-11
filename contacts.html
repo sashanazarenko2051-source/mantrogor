@@ -95,13 +95,13 @@
 <script src="i18n.js"></script>
 <script src="common.js"></script>
 <script>
-  const { data, esc, copy, t, tr } = M;
+  const { data, esc, safeUrl, copy, t, tr } = M;
   const tg = document.getElementById("c-tg"), mail = document.getElementById("c-mail");
   tg.textContent = data.contacts.telegram;
   tg.href = "https://t.me/" + String(data.contacts.telegram).replace(/^@/, "");
   mail.textContent = data.contacts.email;
   mail.href = "mailto:" + data.contacts.email;
-  if (data.contacts.facebook) document.getElementById("c-fb").href = data.contacts.facebook;
+  if (data.contacts.facebook) document.getElementById("c-fb").href = safeUrl(data.contacts.facebook);
   else document.getElementById("c-fb-card").hidden = true;
   document.getElementById("c-hours").textContent = tr(data.contacts.hours);
 

@@ -9,7 +9,8 @@
   let data = window.MANTROGOR_DATA;
   try {
     const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
-    if (saved && saved.v === 2) data = saved;
+    // only a complete copy: a broken or half-saved one would crash every page
+    if (saved && saved.v === 2 && saved.contacts && Array.isArray(saved.services) && Array.isArray(saved.projects)) data = saved;
   } catch (_) {}
 
   // Язык: ?lang=xx в адресе → выбор посетителя → язык браузера → чешский.
@@ -29,7 +30,7 @@
 
   const t = (key, vars) => {
     let s = dict[key] ?? en[key] ?? key;
-    if (vars) Object.keys(vars).forEach(k => s = s.replace("{" + k + "}", vars[k]));
+    if (vars) Object.keys(vars).forEach(k => s = s.split("{" + k + "}").join(vars[k]));
     return s;
   };
   // Текст из data.js: объект {ru: ..., en: ...} или просто строка/массив.
@@ -46,7 +47,13 @@
 
   const fmt = n => "$" + Number(n || 0).toLocaleString("en-US");
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  const minPrice = svc => svc.tiers.length ? Math.min(...svc.tiers.map(x => Number(x.price) || 0)) : 0;
+  // links from data (admin can edit them): only web, mail or local addresses; «javascript:» and the like become «#»
+  const safeUrl = u => {
+    const s = String(u ?? "").trim();
+    const scheme = s.replace(/[\s\x00-\x1f]/g, "").match(/^([a-z][a-z0-9+.\-]*):/i);
+    return scheme && !/^(https?|mailto)$/i.test(scheme[1]) ? "#" : s;
+  };
+  const minPrice =svc => svc.tiers.length ? Math.min(...svc.tiers.map(x => Number(x.price) || 0)) : 0;
 
   function copy(text, btn) {
     const old = btn.textContent;
@@ -137,7 +144,7 @@
     el.innerHTML = `
       <div class="wrap">
         <span>© 2026 MANTROGOR · ${esc(t("tagline"))}</span>
-        <span>${esc(data.contacts.telegram)} · ${esc(data.contacts.email)}</span>
+        <span>${esc((data.contacts || {}).telegram)} · ${esc((data.contacts || {}).email)}</span>
       </div>`;
   }
 
@@ -176,8 +183,8 @@
     const isBot = p.cat === "bot";
     return `
     <article class="proj" data-cat="${esc(p.cat || "")}">
-      <a class="proj-shot" href="${esc(p.url)}" target="_blank" rel="noopener" aria-label="${esc(p.title)}">
-        <img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" width="800" height="500">
+      <a class="proj-shot" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener" aria-label="${esc(p.title)}">
+        <img src="${esc(safeUrl(p.image))}" alt="${esc(p.title)}" loading="lazy" width="800" height="500">
         <span class="proj-host">${esc(p.host)}</span>
         ${isBot ? `<span class="proj-sample">${esc(t("proj_sample"))}</span>` : ""}
       </a>
@@ -189,13 +196,13 @@
         <div class="proj-tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
         ${p.host === "Render" ? `<div class="proj-wake">${esc(t("proj_wake"))}</div>` : ""}
         <div class="cta-row">
-          <a class="btn small" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : p.cat === "app" ? "proj_open_app" : "proj_open"))} ↗</a>
-          ${p.repo ? `<a class="btn small ghost" href="${esc(p.repo)}" target="_blank" rel="noopener">${esc(t("proj_code"))}</a>` : ""}
+          <a class="btn small" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : p.cat === "app" ? "proj_open_app" : "proj_open"))} ↗</a>
+          ${p.repo ? `<a class="btn small ghost" href="${esc(safeUrl(p.repo))}" target="_blank" rel="noopener">${esc(t("proj_code"))}</a>` : ""}
         </div>
       </div>
     </article>`;
   };
 
-  window.M = { data, fmt, esc, copy, minPrice, STORE_KEY, t, tr, days, lang, LANGS, isLoc, projectCard };
+  window.M = { data, fmt, esc, safeUrl, copy, minPrice, STORE_KEY, t, tr, days, lang, LANGS, isLoc, projectCard };
   header(); footer(); apply(); grid();
 })();
