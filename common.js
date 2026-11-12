@@ -53,7 +53,7 @@
     const scheme = s.replace(/[\s\x00-\x1f]/g, "").match(/^([a-z][a-z0-9+.\-]*):/i);
     return scheme && !/^(https?|mailto)$/i.test(scheme[1]) ? "#" : s;
   };
-  const minPrice =svc => svc.tiers.length ? Math.min(...svc.tiers.map(x => Number(x.price) || 0)) : 0;
+  const minPrice = svc => svc.tiers.length ? Math.min(...svc.tiers.map(x => Number(x.price) || 0)) : 0;
 
   function copy(text, btn) {
     const old = btn.textContent;
