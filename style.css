@@ -115,7 +115,7 @@ nav.links a[aria-current="page"] { color: var(--cyan); border-bottom-color: var(
 .hero { padding-block: clamp(56px, 10vw, 120px) 64px; display: grid; gap: 28px; }
 .glitch {
   position: relative; font-weight: 900;
-  font-size: clamp(40px, 10.5vw, 140px); letter-spacing: .02em; line-height: .95;
+  font-size: clamp(40px, 9.6vw, 124px); letter-spacing: .02em; line-height: .95;
   color: var(--fg);
 }
 .glitch::before, .glitch::after { content: attr(data-text); position: absolute; inset: 0; pointer-events: none; }
