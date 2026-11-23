@@ -98,12 +98,12 @@ nav.links a[aria-current="page"] { color: var(--cyan); border-bottom-color: var(
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   transition: background .2s, color .2s, border-color .2s;
 }
-.btn:hover { background: var(--magenta); border-color: var(--magenta); color: var(--fg); }
+.btn:hover { background: var(--magenta); border-color: var(--magenta); color: var(--void); }
 .btn.ghost { background: transparent; color: var(--cyan); clip-path: none; }
 .btn.ghost:hover { background: var(--cyan); color: var(--void); }
 .btn.small { padding: 10px 16px; font-size: 12px; }
 .btn.danger { background: transparent; color: var(--magenta); border-color: var(--magenta); clip-path: none; }
-.btn.danger:hover { background: var(--magenta); color: var(--fg); }
+.btn.danger:hover { background: var(--magenta); color: var(--void); }
 
 /* page heads */
 .page-head { padding-block: 64px 32px; display: grid; gap: 14px; }
