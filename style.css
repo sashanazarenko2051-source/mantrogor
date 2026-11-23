@@ -46,6 +46,9 @@ h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; li
   text-transform: uppercase; color: var(--cyan);
 }
 
+/* пока скрипты не вставили тексты — не показываем пустую страницу (без «прыжков») */
+.js-wait main, .js-wait #site-footer { visibility: hidden; }
+
 /* header */
 header.top {
   position: sticky; top: 0; z-index: 10;
