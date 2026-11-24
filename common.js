@@ -154,23 +154,30 @@
     document.body.prepend(cv);
     const ctx = cv.getContext("2d");
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let w, h;
-    function size() { const r = window.devicePixelRatio || 1; w = innerWidth; h = innerHeight; cv.width = w * r; cv.height = h * r; ctx.setTransform(r, 0, 0, r, 0, 0); }
+    // Холст занимает только низ экрана — от «горизонта» (62% высоты, style.css #grid-bg) вниз, где есть линии:
+    // так он меньше и не лежит под шапкой с размытием (иначе браузер пересчитывает размытие каждый кадр).
+    // Рисуем ~30 кадров в секунду: линии едут медленно, разницы с 60 не видно, а нагрузка вдвое меньше.
+    let w, h, gh, last = -1e9;
+    function size() { const r = window.devicePixelRatio || 1; w = innerWidth; h = innerHeight; gh = Math.ceil(h * 0.38); cv.style.height = gh + "px"; cv.width = w * r; cv.height = gh * r; ctx.setTransform(r, 0, 0, r, 0, 0); }
     function draw(time) {
-      ctx.clearRect(0, 0, w, h);
-      const horizon = h * 0.62, off = still ? 0 : (time / 40) % 40;
+      if (!still) {
+        requestAnimationFrame(draw);
+        if (time - last < 32) return;
+        last = time;
+      }
+      ctx.clearRect(0, 0, w, gh);
+      const horizon = h - gh, off = still ? 0 : (time / 40) % 40;
       ctx.lineWidth = 1;
       for (let i = 0; i < 26; i++) {
         const y = horizon + Math.pow((i * 40 + off) / 1040, 2) * (h - horizon + 200);
         if (y > h) break;
         ctx.strokeStyle = `rgba(46,242,255,${0.05 + (y - horizon) / h * 0.35})`;
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0, y - horizon); ctx.lineTo(w, y - horizon); ctx.stroke();
       }
-      for (let i = -20; i <= 20; i++) {
-        ctx.strokeStyle = "rgba(255,43,214,0.14)";
-        ctx.beginPath(); ctx.moveTo(w / 2 + i * 18, horizon); ctx.lineTo(w / 2 + i * 160, h); ctx.stroke();
-      }
-      if (!still) requestAnimationFrame(draw);
+      ctx.strokeStyle = "rgba(255,43,214,0.14)";
+      ctx.beginPath();
+      for (let i = -20; i <= 20; i++) { ctx.moveTo(w / 2 + i * 18, 0); ctx.lineTo(w / 2 + i * 160, gh); }
+      ctx.stroke();
     }
     size();
     addEventListener("resize", () => { size(); if (still) draw(0); });

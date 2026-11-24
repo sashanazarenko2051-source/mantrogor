@@ -234,7 +234,7 @@ window.MANTROGOR_DATA = {
       "url": "https://cukrarna-cakeme.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
       "host": "Render",
-      "image": "projects/cakeme.jpg",
+      "image": "projects/cakeme.webp",
       "tags": ["FastAPI", "PostgreSQL", "Stripe", "Push"],
       "desc": {
         "ru": "Сайт кондитерской в Праге: меню, заказ тортов с онлайн-оплатой, доставка, админ-панель и несколько языков.",
@@ -255,7 +255,7 @@ window.MANTROGOR_DATA = {
       "url": "https://nice-shopping.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
       "host": "Render",
-      "image": "projects/niceshop.jpg",
+      "image": "projects/niceshop.webp",
       "tags": ["FastAPI", "SQLite", "Telegram"],
       "desc": {
         "ru": "Интернет-магазин белья и носков: каталог, корзина, оформление заказа, отслеживание, отзывы, админка и уведомления о заказах в Telegram.",
@@ -276,7 +276,7 @@ window.MANTROGOR_DATA = {
       "url": "https://nice-shopping.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/nice-shopping",
       "host": "Telegram",
-      "image": "projects/bot-niceshop.jpg",
+      "image": "projects/bot-niceshop.webp",
       "tags": ["Telegram Bot API", "Python", "FastAPI"],
       "desc": {
         "ru": "Telegram-бот магазина Nice Shopping: сразу присылает владельцу каждый заказ — клиент, телефон, доставка, оплата, товары и сумма.",
@@ -297,7 +297,7 @@ window.MANTROGOR_DATA = {
       "url": "https://cukrarna-cakeme.onrender.com/",
       "repo": "https://github.com/sashanazarenko2051-source/cukrarna-cakeme",
       "host": "Telegram",
-      "image": "projects/bot-cakeme.jpg",
+      "image": "projects/bot-cakeme.webp",
       "tags": ["Telegram Bot API", "Python", "FastAPI"],
       "desc": {
         "ru": "Telegram-бот кондитерской CakeMe: присылает новые заказы тортов с датой, временем, адресом и способом оплаты. Сообщения могут получать сразу несколько сотрудников.",
@@ -318,7 +318,7 @@ window.MANTROGOR_DATA = {
       "url": "https://sashanazarenko2051-source.github.io/transpika-site/",
       "repo": "https://github.com/sashanazarenko2051-source/transpika-site",
       "host": "GitHub Pages",
-      "image": "projects/transpika.jpg",
+      "image": "projects/transpika.webp",
       "tags": ["HTML", "CSS", "JavaScript"],
       "desc": {
         "ru": "Сайт перевозчика Чехия ↔ Украина: маршруты, цены, отзывы, регистрация и личный кабинет.",
@@ -339,7 +339,7 @@ window.MANTROGOR_DATA = {
       "url": "https://sashanazarenko2051-source.github.io/lingualab/",
       "repo": "https://github.com/sashanazarenko2051-source/lingualab",
       "host": "Windows · Web",
-      "image": "projects/lingualab.jpg",
+      "image": "projects/lingualab.webp",
       "tags": ["JavaScript", "Python", "pywebview", "Edge TTS", "PWA"],
       "desc": {
         "ru": "Приложение для изучения языков: 8000 слов на язык, уровни A0–B2, озвучка; работает в браузере, на телефоне и как программа для Windows.",
