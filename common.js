@@ -190,11 +190,11 @@
     const isBot = p.cat === "bot";
     return `
     <article class="proj" data-cat="${esc(p.cat || "")}">
-      <a class="proj-shot" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener" aria-label="${esc(p.title)}">
+      <${p.url ? `a class="proj-shot" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener" aria-label="${esc(p.title)}"` : `div class="proj-shot"`}>
         <img src="${esc(safeUrl(p.image))}" alt="${esc(p.title)}" loading="lazy" width="800" height="500">
         <span class="proj-host">${esc(p.host)}</span>
         ${isBot ? `<span class="proj-sample">${esc(t("proj_sample"))}</span>` : ""}
-      </a>
+      </${p.url ? "a" : "div"}>
       <div class="proj-body">
         ${p.status ? `<span class="proj-status st-${esc(p.status)}">${esc(t("st_" + p.status))}</span>` : ""}
         ${svc ? `<span class="label">${esc(svc.code)} · ${esc(tr(svc.title))}</span>` : ""}
@@ -203,7 +203,7 @@
         <div class="proj-tags">${(p.tags || []).map(x => `<span>${esc(x)}</span>`).join("")}</div>
         ${p.host === "Render" ? `<div class="proj-wake">${esc(t("proj_wake"))}</div>` : ""}
         <div class="cta-row">
-          <a class="btn small" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : p.cat === "app" ? "proj_open_app" : "proj_open"))} ↗</a>
+          ${p.url ? `<a class="btn small" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener">${esc(t(isBot ? "proj_bot_site" : p.cat === "app" ? "proj_open_app" : "proj_open"))} ↗</a>` : ""}
           ${p.repo ? `<a class="btn small ghost" href="${esc(safeUrl(p.repo))}" target="_blank" rel="noopener">${esc(t("proj_code"))}</a>` : ""}
         </div>
       </div>
